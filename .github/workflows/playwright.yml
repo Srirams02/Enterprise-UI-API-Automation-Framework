@@ -59,16 +59,16 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
 
-      - name: Extract Test Summary
+      - name: Extract Accurate Test Summary
         if: always()
         shell: bash
         run: |
 
-          PASSED=$(grep -r '\"status\":\"passed\"' allure-results | wc -l || true)
+          PASSED=$(find allure-results -name '*-result.json' -exec grep -l '\"status\":\"passed\"' {} \; | wc -l)
 
-          FAILED=$(grep -r '\"status\":\"failed\"' allure-results | wc -l || true)
+          FAILED=$(find allure-results -name '*-result.json' -exec grep -l '\"status\":\"failed\"' {} \; | wc -l)
 
-          BROKEN=$(grep -r '\"status\":\"broken\"' allure-results | wc -l || true)
+          BROKEN=$(find allure-results -name '*-result.json' -exec grep -l '\"status\":\"broken\"' {} \; | wc -l)
 
           TOTAL=$((PASSED + FAILED + BROKEN))
 
