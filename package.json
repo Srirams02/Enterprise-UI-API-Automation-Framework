@@ -1,0 +1,27 @@
+{
+  "name": "enterprise-ui-api-automation-framework",
+  "version": "1.0.0",
+  "description": "Enterprise Playwright Framework",
+  "scripts": {
+    "test": "npx playwright test",
+    "ui": "npx playwright test tests/ui",
+    "api": "npx playwright test tests/api",
+    "e2e": "npx playwright test tests/e2e",
+    "headed": "npx playwright test --headed",
+    "report": "npx playwright show-report",
+    "allure": "allure generate ./allure-results --clean && allure open"
+  },
+  "devDependencies": {
+    "@playwright/test": "latest",
+    "@types/node": "^25.6.0",
+    "@types/nodemailer": "^8.0.0",
+    "allure-playwright": "latest",
+    "cross-env": "latest",
+    "dotenv": "^17.4.2",
+    "faker": "latest",
+    "nodemailer": "^8.0.7"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.4.0"
+  }
+}

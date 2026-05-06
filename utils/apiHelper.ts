@@ -1,0 +1,17 @@
+export const bookingPayload = {
+
+    firstname: 'Sriram',
+
+    lastname: 'Tester',
+
+    totalprice: 1000,
+
+    depositpaid: true,
+
+    bookingdates: {
+        checkin: '2025-01-01',
+        checkout: '2025-01-05'
+    },
+
+    additionalneeds: 'Breakfast'
+};

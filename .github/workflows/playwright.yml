@@ -1,0 +1,151 @@
+name: Playwright Automation Framework
+
+on:
+
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: '30 10 * * *'
+    # 4:00 PM IST DAILY
+
+jobs:
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Clean Old Reports
+        run: |
+          rm -rf allure-results
+          rm -rf allure-report
+          rm -rf playwright-report
+          rm -rf test-results
+
+      - name: Run Playwright Tests
+        run: npx playwright test
+
+      - name: Upload Playwright Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+
+      - name: Generate Allure Report
+        if: always()
+        run: |
+          npm install -g allure-commandline --save-dev
+          allure generate allure-results --clean -o allure-report
+
+      - name: Upload Allure Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
+
+      - name: Extract Test Summary
+        if: always()
+        shell: bash
+        run: |
+
+          PASSED=$(grep -r '"status":"passed"' allure-results | wc -l || true)
+
+          FAILED=$(grep -r '"status":"failed"' allure-results | wc -l || true)
+
+          BROKEN=$(grep -r '"status":"broken"' allure-results | wc -l || true)
+
+          TOTAL=$((PASSED + FAILED + BROKEN))
+
+          echo "PASSED=$PASSED" >> $GITHUB_ENV
+          echo "FAILED=$FAILED" >> $GITHUB_ENV
+          echo "BROKEN=$BROKEN" >> $GITHUB_ENV
+          echo "TOTAL=$TOTAL" >> $GITHUB_ENV
+
+      - name: Send Automation Email Report
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+
+          server_address: smtp.gmail.com
+
+          server_port: 465
+
+          secure: true
+
+          username: ${{ secrets.EMAIL_USERNAME }}
+
+          password: ${{ secrets.EMAIL_PASSWORD }}
+
+          subject: |
+            Playwright Automation Report - Run #${{ github.run_number }}
+
+          to: ${{ secrets.EMAIL_TO }}
+
+          from: ${{ secrets.EMAIL_USERNAME }}
+
+          html_body: |
+
+            <h2>Playwright Automation Execution Report</h2>
+
+            <hr>
+
+            <p><b>Total Tests:</b> ${{ env.TOTAL }}</p>
+
+            <p>✅ Passed: ${{ env.PASSED }}</p>
+
+            <p>❌ Failed: ${{ env.FAILED }}</p>
+
+            <p>⚠️ Broken: ${{ env.BROKEN }}</p>
+
+            <hr>
+
+            <h3>Execution Summary Chart</h3>
+
+            <img src="https://quickchart.io/chart?c={
+              type:'pie',
+              data:{
+                labels:['Passed','Failed','Broken'],
+                datasets:[{
+                  data:[
+                    ${{ env.PASSED }},
+                    ${{ env.FAILED }},
+                    ${{ env.BROKEN }}
+                  ]
+                }]
+              }
+            }" />
+
+            <br><br>
+
+            <h3>Open GitHub Execution</h3>
+
+            <a href="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}">
+              View Execution Report
+            </a>
+
+            <br><br>
+
+            <p>
+              Triggered via GitHub Actions CI/CD Pipeline
+            </p>
