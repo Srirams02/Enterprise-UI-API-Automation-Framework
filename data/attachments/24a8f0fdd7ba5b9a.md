@@ -1,0 +1,277 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: e2e/hybridFlow.spec.ts >> Enterprise E2E Employee Workflow
+- Location: tests/e2e/hybridFlow.spec.ts:12:5
+
+# Error details
+
+```
+Error: expect(locator).toContainText(expected) failed
+
+Locator: locator('body')
+Timeout: 5000ms
+- Expected substring  -  1
++ Received string     + 11
+
+- Personal Details
++
++   
++   
++
++   AdminPIMLeaveTimeRecruitmentMy InfoPerformanceDashboardDirectoryMaintenanceClaimPIM UpgradeTest 99 testConfiguration Employee ListAdd EmployeeReportsAdd EmployeeAccepts jpg, .png, .gif up to 1MB. Recommended dimensions: 200px X 200pxEmployee Full NameEmployee IdCreate Login Details * Required Cancel  Save OrangeHRM OS 5.9© 2005 - 2026 OrangeHRM, Inc. All rights reserved.
++     
++   
++   
++
++
++
+
+Call log:
+  - Expect "toContainText" with timeout 5000ms
+  - waiting for locator('body')
+    9 × locator resolved to <body>…</body>
+      - unexpected value "
+  
+  
+
+  AdminPIMLeaveTimeRecruitmentMy InfoPerformanceDashboardDirectoryMaintenanceClaimPIM UpgradeTest 99 testConfiguration Employee ListAdd EmployeeReportsAdd EmployeeAccepts jpg, .png, .gif up to 1MB. Recommended dimensions: 200px X 200pxEmployee Full NameEmployee IdCreate Login Details * Required Cancel  Save OrangeHRM OS 5.9© 2005 - 2026 OrangeHRM, Inc. All rights reserved.
+    
+  
+  
+
+
+"
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic:
+    - complementary [ref=e4]:
+      - navigation "Sidepanel" [ref=e5]:
+        - generic [ref=e6]:
+          - link "client brand banner" [ref=e7] [cursor=pointer]:
+            - /url: https://www.orangehrm.com/
+            - img "client brand banner" [ref=e9]
+          - text: 
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - generic [ref=e12]:
+              - textbox "Search" [ref=e15]
+              - button "" [ref=e16] [cursor=pointer]:
+                - generic [ref=e17]: 
+            - separator [ref=e18]
+          - list [ref=e19]:
+            - listitem [ref=e20]:
+              - link "Admin" [ref=e21] [cursor=pointer]:
+                - /url: /web/index.php/admin/viewAdminModule
+                - generic [ref=e24]: Admin
+            - listitem [ref=e25]:
+              - link "PIM" [ref=e26] [cursor=pointer]:
+                - /url: /web/index.php/pim/viewPimModule
+                - generic [ref=e40]: PIM
+            - listitem [ref=e41]:
+              - link "Leave" [ref=e42] [cursor=pointer]:
+                - /url: /web/index.php/leave/viewLeaveModule
+                - generic [ref=e45]: Leave
+            - listitem [ref=e46]:
+              - link "Time" [ref=e47] [cursor=pointer]:
+                - /url: /web/index.php/time/viewTimeModule
+                - generic [ref=e53]: Time
+            - listitem [ref=e54]:
+              - link "Recruitment" [ref=e55] [cursor=pointer]:
+                - /url: /web/index.php/recruitment/viewRecruitmentModule
+                - generic [ref=e61]: Recruitment
+            - listitem [ref=e62]:
+              - link "My Info" [ref=e63] [cursor=pointer]:
+                - /url: /web/index.php/pim/viewMyDetails
+                - generic [ref=e69]: My Info
+            - listitem [ref=e70]:
+              - link "Performance" [ref=e71] [cursor=pointer]:
+                - /url: /web/index.php/performance/viewPerformanceModule
+                - generic [ref=e79]: Performance
+            - listitem [ref=e80]:
+              - link "Dashboard" [ref=e81] [cursor=pointer]:
+                - /url: /web/index.php/dashboard/index
+                - generic [ref=e84]: Dashboard
+            - listitem [ref=e85]:
+              - link "Directory" [ref=e86] [cursor=pointer]:
+                - /url: /web/index.php/directory/viewDirectory
+                - generic [ref=e89]: Directory
+            - listitem [ref=e90]:
+              - link "Maintenance" [ref=e91] [cursor=pointer]:
+                - /url: /web/index.php/maintenance/viewMaintenanceModule
+                - generic [ref=e95]: Maintenance
+            - listitem [ref=e96]:
+              - link "Claim" [ref=e97] [cursor=pointer]:
+                - /url: /web/index.php/claim/viewClaimModule
+                - img [ref=e100]
+                - generic [ref=e104]: Claim
+    - banner [ref=e105]:
+      - generic [ref=e106]:
+        - generic [ref=e107]:
+          - text: 
+          - heading "PIM" [level=6] [ref=e109]
+        - link "Upgrade" [ref=e111]:
+          - /url: https://orangehrm.com/open-source/upgrade-to-advanced
+          - button "Upgrade" [ref=e112] [cursor=pointer]: Upgrade
+        - list [ref=e118]:
+          - listitem [ref=e119]:
+            - generic [ref=e120] [cursor=pointer]:
+              - img "profile picture" [ref=e121]
+              - paragraph [ref=e122]: Test 99 test
+              - generic [ref=e123]: 
+      - navigation "Topbar Menu" [ref=e125]:
+        - list [ref=e126]:
+          - listitem [ref=e127] [cursor=pointer]:
+            - generic [ref=e128]:
+              - text: Configuration
+              - generic [ref=e129]: 
+          - listitem [ref=e130] [cursor=pointer]:
+            - link "Employee List" [ref=e131]:
+              - /url: "#"
+          - listitem [ref=e132] [cursor=pointer]:
+            - link "Add Employee" [ref=e133]:
+              - /url: "#"
+          - listitem [ref=e134] [cursor=pointer]:
+            - link "Reports" [ref=e135]:
+              - /url: "#"
+          - button "" [ref=e137] [cursor=pointer]:
+            - generic [ref=e138]: 
+  - generic [ref=e139]:
+    - generic [ref=e142]:
+      - heading "Add Employee" [level=6] [ref=e143]
+      - separator [ref=e144]
+      - generic [ref=e145]:
+        - generic [ref=e149]:
+          - generic [ref=e150]:
+            - generic [ref=e152]:
+              - button "Choose File"
+              - generic [ref=e153]:
+                - img "profile picture" [ref=e155]
+                - button "" [ref=e156] [cursor=pointer]:
+                  - generic [ref=e157]: 
+            - paragraph [ref=e158]: "Accepts jpg, .png, .gif up to 1MB. Recommended dimensions: 200px X 200px"
+          - generic [ref=e159]:
+            - generic [ref=e160]:
+              - generic [ref=e163]:
+                - generic [ref=e165]: Employee Full Name*
+                - generic [ref=e166]:
+                  - textbox "First Name" [ref=e169]: Sriram
+                  - textbox "Middle Name" [ref=e172]
+                  - textbox "Last Name" [ref=e175]: Automation
+              - generic [ref=e178]:
+                - generic [ref=e180]: Employee Id
+                - textbox [ref=e182]: "0498"
+            - separator [ref=e183]
+            - generic [ref=e184]:
+              - paragraph [ref=e185]: Create Login Details
+              - checkbox [ref=e188]
+        - separator [ref=e190]
+        - generic [ref=e191]:
+          - paragraph [ref=e192]: "* Required"
+          - button "Cancel" [ref=e193] [cursor=pointer]
+          - button "Save" [active] [ref=e194] [cursor=pointer]
+    - generic [ref=e195]:
+      - paragraph [ref=e196]: OrangeHRM OS 5.9
+      - paragraph [ref=e197]:
+        - text: © 2005 - 2026
+        - link "OrangeHRM, Inc" [ref=e198] [cursor=pointer]:
+          - /url: http://www.orangehrm.com
+        - text: . All rights reserved.
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | 
+  3  | import { LoginPage }
+  4  | from '../../pages/LoginPage';
+  5  | 
+  6  | import { DashboardPage }
+  7  | from '../../pages/DashboardPage';
+  8  | 
+  9  | import { EmployeePage }
+  10 | from '../../pages/EmployeePage';
+  11 | 
+  12 | test('Enterprise E2E Employee Workflow',
+  13 | async ({ page }) => {
+  14 | 
+  15 |     const loginPage =
+  16 |         new LoginPage(page);
+  17 | 
+  18 |     const dashboardPage =
+  19 |         new DashboardPage(page);
+  20 | 
+  21 |     const employeePage =
+  22 |         new EmployeePage(page);
+  23 | 
+  24 |     // LOGIN
+  25 | 
+  26 |     await loginPage.gotoLoginPage();
+  27 | 
+  28 |     await loginPage.login(
+  29 |         'Admin',
+  30 |         'admin123'
+  31 |     );
+  32 | 
+  33 |     await page.waitForTimeout(5000);
+  34 | 
+  35 |     // OPEN PIM
+  36 | 
+  37 |     await dashboardPage.openPIM();
+  38 | 
+  39 |     await page.waitForTimeout(5000);
+  40 | 
+  41 |     // ADD EMPLOYEE
+  42 | 
+  43 |     await employeePage.clickAddEmployee();
+  44 | 
+  45 |     await page.waitForTimeout(3000);
+  46 | 
+  47 |     await employeePage.addEmployee(
+  48 |         'Sriram',
+  49 |         'Automation'
+  50 |     );
+  51 | 
+  52 |     // EXTRA STABILITY WAIT
+  53 | 
+  54 |     await page.waitForTimeout(15000);
+  55 | 
+  56 |     // VALIDATE EMPLOYEE PAGE
+  57 | 
+  58 |     await expect(
+  59 |         page.locator('body')
+> 60 |     ).toContainText('Personal Details');
+     |       ^ Error: expect(locator).toContainText(expected) failed
+  61 | 
+  62 |     // BACK TO PIM
+  63 | 
+  64 |     await dashboardPage.openPIM();
+  65 | 
+  66 |     await page.waitForTimeout(5000);
+  67 | 
+  68 |     // SEARCH EMPLOYEE
+  69 | 
+  70 |     await employeePage.searchEmployee(
+  71 |         'Sriram'
+  72 |     );
+  73 | 
+  74 |     await page.waitForTimeout(5000);
+  75 | 
+  76 |     // FINAL VALIDATION
+  77 | 
+  78 |     await expect(
+  79 |         page.locator('body')
+  80 |     ).toContainText('Employee Information');
+  81 | });
+```
